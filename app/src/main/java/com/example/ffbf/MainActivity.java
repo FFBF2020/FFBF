@@ -12,7 +12,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     EditText  mail, password;
-    Button login;
+    Button login, register;
     String Email;
 
     @Override
@@ -20,15 +20,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mail.findViewById(R.id.et_username);
-        password.findViewById(R.id.et_password);
-        login.findViewById(R.id.btn_login);
+        mail = findViewById(R.id.et_mail);
+        password = findViewById(R.id.et_psword);
+        login = findViewById(R.id.btn_login);
+        register = findViewById(R.id.btn_register);
 
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Email = (mail.getText().toString());
+                Email = mail.getText().toString();
 
                 Intent i = new Intent(MainActivity.this, HomeRestList.class);
                 i.putExtra("MAIL", Email);
@@ -38,7 +39,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+           register.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent i = new Intent(MainActivity.this, Register.class);
+                   startActivity(i);
+               }
+           });
 
     }
 }
