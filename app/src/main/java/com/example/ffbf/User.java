@@ -2,14 +2,15 @@ package com.example.ffbf;
 
 public class User {
 
- private String fn, sn, mail, password;
+ private String fn, sn, mail, password, type;
 
    // Constructor for writing data from database
-    public User(String fn, String sn, String mail, String password) {
+    public User(String fn, String sn, String mail, String password, String type) {
         this.fn = fn;
         this.sn = sn;
         this.mail = mail;
         this.password = password;
+        this.type = type;
     }
 
     //Empty constructor for reading data from database
@@ -47,4 +48,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getType() {return type;}
+
+    public void setType(String type){this.type = type;}
 }

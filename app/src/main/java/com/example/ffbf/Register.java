@@ -17,6 +17,7 @@ public class Register extends AppCompatActivity {
     //Create imposters
      EditText fn, sn,mail,password;
      Button register;
+     String basic;
 
      //Database reference object
      DatabaseReference dbref;
@@ -44,7 +45,7 @@ public class Register extends AppCompatActivity {
                        TextUtils.isEmpty(password.getText().toString()) && TextUtils.isEmpty(fn.getText().toString()) && TextUtils.isEmpty(sn.getText().toString())))
                {
                      // db reference to save object
-                   User user = new User(fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString());
+                   User user = new User(fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), basic);
                    dbref.child(dbref.push().getKey()).setValue(user);
 
 
