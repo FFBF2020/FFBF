@@ -6,31 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".HomeRestList">
 
+    <Button
+        android:id="@+id/btn_streetFood"
+        android:layout_width="274dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginBottom="313dp"
+        android:text="Street Food"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_restaurants" />
+
     <TextView
         android:id="@+id/tv_mail_login"
-        android:layout_width="276dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_width="146dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="89dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="695dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_logOut"
-        android:layout_width="102dp"
-        android:layout_height="34dp"
+        android:layout_width="105dp"
+        android:layout_height="51dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="693dp"
         android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toEndOf="@+id/tv_mail_login"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_restaurants"
+        android:layout_width="275dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginRight="59dp"
+        android:text="Restaurants List"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_logOut" />
 </androidx.constraintlayout.widget.ConstraintLayout>

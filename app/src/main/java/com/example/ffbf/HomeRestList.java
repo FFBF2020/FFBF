@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeRestList extends AppCompatActivity {
      TextView mailLogin;
-     Button logout;
+     Button logout,restList,streetFood;
      FirebaseAuth auth;
      FirebaseUser fbus;
     @Override
@@ -23,6 +23,8 @@ public class HomeRestList extends AppCompatActivity {
 
         mailLogin = findViewById(R.id.tv_mail_login);
         logout = findViewById(R.id.btn_logOut);
+        restList = findViewById(R.id.btn_restaurants);
+        streetFood = findViewById(R.id.btn_streetFood);
 
         auth = FirebaseAuth.getInstance();
         fbus = auth.getCurrentUser();
@@ -35,17 +37,28 @@ public class HomeRestList extends AppCompatActivity {
                 //Sign out and send the user back to login page, clear all Activities
                 auth.getInstance().signOut();
                 Intent i = new Intent(HomeRestList.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
 
             }
         });
 
+        streetFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent (HomeRestList.this, StreetFood.class));
 
+            }
+        });
 
-
-
+        restList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeRestList.this, RestaurantsList.class));
+            }
+        });
 
     }
 }

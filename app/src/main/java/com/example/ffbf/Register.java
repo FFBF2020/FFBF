@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
 
 
 
-
+        // Register a new user
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
