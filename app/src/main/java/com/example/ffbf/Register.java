@@ -64,23 +64,26 @@ public class Register extends AppCompatActivity {
                             if(task.isSuccessful()){
 
                                 Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                dbref = FirebaseDatabase.getInstance().getReference("_user_");
+                                User user = new User (fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), "user");
+                                dbref.child(dbref.push().getKey()).setValue(user);
+
+                                startActivity(new Intent(Register.this, MainActivity.class));
+                                finish();
+
                             }
                             else {
                                 Toast.makeText(Register.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                return;
                             }
 
                         }
                     });
 
-                    // db reference to save object
-                    dbref = FirebaseDatabase.getInstance().getReference("_user_");
-                    User user = new User (fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), "user");
-                    dbref.child(dbref.push().getKey()).setValue(user);
 
-                    // Back to login page
-                    Intent i = new Intent(Register.this, MainActivity.class);
-                    startActivity(i);
+
                 }
+
             }
 
         });

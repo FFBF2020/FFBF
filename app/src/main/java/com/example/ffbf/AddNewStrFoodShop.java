@@ -30,7 +30,7 @@ import com.squareup.picasso.Picasso;
 
 public class AddNewStrFoodShop extends AppCompatActivity {
 
-    ImageView image;
+    ImageView pick;
     EditText stallName, stallAddr1, stallAddr2, descr;
     CheckBox veg;
     Button upload;
@@ -43,7 +43,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_str_food_shop);
 
-        image = findViewById(R.id.iv_image);
+        pick = findViewById(R.id.iv_image);
         stallName = findViewById(R.id.et_stallName);
         stallAddr1 = findViewById(R.id.et_stallAddress1);
         stallAddr2 = findViewById(R.id.et_stallAddress2);
@@ -52,18 +52,19 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         descr = findViewById(R.id.etml_descr);
         sref = FirebaseStorage.getInstance().getReference("images");
 
+
         // Scroller for EditText multiple lines with fixed minimum and maximum lines
         descr.setScroller(new Scroller(getApplicationContext()));
-        descr.setMinLines(2);
+        descr.setMinLines(1);
         descr.setMaxLines(6);
 
-        image.setOnClickListener(new View.OnClickListener() {
+        pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
                 i.setType("image/*");
                 i.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(i, 100);
+                startActivityForResult(i, 107);
             }
         });
 
@@ -71,10 +72,11 @@ public class AddNewStrFoodShop extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("_stalls_");
-               final String id = dbref.push().getKey();
 
-                final StorageReference reference = sref.child(id + "."+ getExtention(image_path));
+
+               dbref = FirebaseDatabase.getInstance().getReference("_stalls_");
+                final String id = dbref.push().getKey();
+                final StorageReference reference = sref.child(id + "."+ getExtension(image_path));
                 reference.putFile(image_path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -86,10 +88,10 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                 String type;
                                  // Check if the Checkbox is selected or not
                                 if(veg.isChecked()) {
-                                   type = "Vegitarian";
+                                   type = "Vegetarian";
                                 }
                                 else {
-                                    type = "No-vegitarian";
+                                    type = "No-vegetarian";
                                 }
 
                                 if (!(TextUtils.isEmpty(stallName.getText().toString()) &&
@@ -98,7 +100,10 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                     Stalls stalls = new Stalls(stallName.getText().toString(), stallAddr1.getText().toString(), stallAddr2.getText().toString(),
                                             descr.getText().toString(), type, url);
 
+
                                     dbref.child(id).setValue(stalls);
+                                    startActivity(new Intent(AddNewStrFoodShop.this, Stalls.class ));
+                                    finish();
 
                                 }
                                 else {
@@ -128,14 +133,16 @@ public class AddNewStrFoodShop extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 100 && resultCode == RESULT_OK && data.getData() != null) {
+        if(requestCode == 107 && resultCode == RESULT_OK && data.getData() != null) {
 
-            Picasso.get().load(data.getData()).fit().into(image);
+            Picasso.get().load(data.getData()).fit().into(pick);
             image_path = data.getData();
         }
     }
 
-    private String getExtention(Uri path) {
+
+
+    private String getExtension(Uri path) {
 
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
