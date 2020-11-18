@@ -34,6 +34,7 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
         dbref = FirebaseDatabase.getInstance().getReference("_places_");
         mng = new LinearLayoutManager(ListPlaces.this);
         rv.setLayoutManager(mng);
+        dbref.addListenerForSingleValueEvent(listener);
     }
 
     ValueEventListener listener = new ValueEventListener() {
