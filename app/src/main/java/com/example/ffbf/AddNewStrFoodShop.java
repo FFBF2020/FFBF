@@ -31,7 +31,7 @@ import com.squareup.picasso.Picasso;
 public class AddNewStrFoodShop extends AppCompatActivity {
 
     ImageView pick;
-    EditText stallName, stallAddr1, stallAddr2, descr;
+    EditText stallName, stallAddr1, descr;
     CheckBox veg;
     Button upload;
     Uri image_path;
@@ -46,7 +46,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         pick = findViewById(R.id.iv_image);
         stallName = findViewById(R.id.et_stallName);
         stallAddr1 = findViewById(R.id.et_stallAddress1);
-        stallAddr2 = findViewById(R.id.et_stallAddress2);
+
         veg = findViewById(R.id.cb_veg);
         upload = findViewById(R.id.btn_upload);
         descr = findViewById(R.id.etml_descr);
@@ -74,7 +74,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
 
 
 
-               dbref = FirebaseDatabase.getInstance().getReference("_stalls_");
+               dbref = FirebaseDatabase.getInstance().getReference("_places_");
                 final String id = dbref.push().getKey();
                 final StorageReference reference = sref.child(id + "."+ getExtension(image_path));
                 reference.putFile(image_path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -95,14 +95,14 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                 }
 
                                 if (!(TextUtils.isEmpty(stallName.getText().toString()) &&
-                                        TextUtils.isEmpty(stallAddr1.getText().toString()) && TextUtils.isEmpty(stallAddr2.getText().toString()) && TextUtils.isEmpty(descr.getText().toString()))) {
+                                        TextUtils.isEmpty(stallAddr1.getText().toString())  && TextUtils.isEmpty(descr.getText().toString()))) {
 
-                                    Stalls stalls = new Stalls(stallName.getText().toString(), stallAddr1.getText().toString(), stallAddr2.getText().toString(),
-                                            descr.getText().toString(), type, url);
+                                    RestAndStrFood place = new RestAndStrFood(stallName.getText().toString(), stallAddr1.getText().toString(),
+                                            descr.getText().toString(), type, url, "stall");
 
 
-                                    dbref.child(id).setValue(stalls);
-                                    startActivity(new Intent(AddNewStrFoodShop.this, Stalls.class ));
+                                    dbref.child(id).setValue(place);
+                                    startActivity(new Intent(AddNewStrFoodShop.this, HomeList.class ));
                                     finish();
 
                                 }

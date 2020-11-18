@@ -11,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".PlaceDetails"></activity>
+        <activity android:name=".ListPlaces" />
+        <activity android:name=".HomeList" />
+        <activity android:name=".Profile" />
         <activity android:name=".AddNewStrFoodShop" />
-        <activity android:name=".RestaurantsList" />
-        <activity android:name=".StreetFood" />
         <activity android:name=".Register" />
-        <activity android:name=".HomeRestList" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
