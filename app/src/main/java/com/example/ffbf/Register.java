@@ -83,8 +83,9 @@ public class Register extends AppCompatActivity {
 
                                     Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                     //dbref = FirebaseDatabase.getInstance().getReference("_user_");
+                                    String type = "user";
                                     User user = new User(fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), "user");
-                                    dbref.child(dbref.push().getKey()).setValue(user);
+                                    dbref.child(dbref.push().getKey()).setValue(type);
 
                                     startActivity(new Intent(Register.this, MainActivity.class));
                                     finish();

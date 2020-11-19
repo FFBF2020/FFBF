@@ -1,6 +1,9 @@
 package com.example.ffbf;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
 
  private String fn, sn, mail, password, type;
 
@@ -16,6 +19,26 @@ public class User {
     //Empty constructor for reading data from database
     public User() {
     }
+
+    protected User(Parcel in) {
+        fn = in.readString();
+        sn = in.readString();
+        mail = in.readString();
+        password = in.readString();
+        type = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getFn() {
         return fn;
@@ -52,4 +75,18 @@ public class User {
     public String getType() {return type;}
 
     public void setType(String type){this.type = type;}
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fn);
+        dest.writeString(sn);
+        dest.writeString(mail);
+        dest.writeString(password);
+        dest.writeString(type);
+    }
 }

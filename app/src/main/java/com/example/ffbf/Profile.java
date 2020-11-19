@@ -43,27 +43,11 @@ public class Profile extends AppCompatActivity {
         edit = findViewById(R.id.btn_edit);
         save = findViewById(R.id.btn_save);
 
-        userMail = getIntent().getStringExtra("EMAIL");
+        User user = getIntent().getParcelableExtra("User");
 
-       dbref = FirebaseDatabase.getInstance().getReference("_user_");
-       dbref.child("mail").child(userMail).addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               firstN = snapshot.child("fn").getValue().toString();
-               surname = snapshot.child("sn").getValue().toString();
-               userType = snapshot.child("type").getValue().toString();
+        fn.setText(user.getFn());
 
-               fn.setText(firstN);
-               sn.setText(surname);
-               type.setText(userType);
-               mail.setText(userMail);
-           }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
-
-           }
-       });
 
 
 
