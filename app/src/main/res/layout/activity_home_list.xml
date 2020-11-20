@@ -12,13 +12,14 @@
         android:layout_height="36dp"
         android:layout_marginStart="96dp"
         android:layout_marginLeft="96dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="97dp"
         android:layout_marginRight="97dp"
-        android:layout_marginBottom="370dp"
         android:text="Street food"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_restaurants" />
 
     <TextView
         android:id="@+id/tv_mail_login"
@@ -32,20 +33,23 @@
         android:layout_marginBottom="203dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_restaurants"
         app:layout_constraintEnd_toStartOf="@+id/sp_userMenu"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.016" />
 
     <Spinner
         android:id="@+id/sp_userMenu"
         android:layout_width="188dp"
         android:layout_height="29dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="205dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_restaurants"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_restaurants"
@@ -59,5 +63,24 @@
         android:text="restaurants list"
         app:layout_constraintBottom_toTopOf="@+id/btn_streetFood"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_addPlace"
+        android:layout_width="219dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginRight="98dp"
+        android:layout_marginBottom="368dp"
+        android:text="add new place"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_streetFood"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
     public UserAdapter(ArrayList<User> list, UserHolder.OnUserClickListener  _listener) {
         this.list = list;
+        listener = _listener;
     }
 
     @NonNull
@@ -27,7 +28,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.userlist, parent, false);
-
         return new UserHolder(v, listener);
     }
 
@@ -46,7 +46,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
     public static class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    ImageView iv;
+
     TextView tv;
     OnUserClickListener listener;
 
@@ -56,7 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     public UserHolder(@NonNull View itemView, OnUserClickListener _listener) {
         super(itemView);
 
-        iv = itemView.findViewById(R.id.iv_avatar);
+
         tv = itemView.findViewById(R.id.tv_userName);
         listener = _listener;
         itemView.setOnClickListener(this);

@@ -17,6 +17,14 @@ import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.database.DataSnapshot;
 //import com.google.firebase.database.DatabaseError;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 //import com.google.firebase.database.ValueEventListener;
 
 //import java.util.ArrayList;
@@ -27,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     EditText  mail, password;
     Button login, register;
     String email;
-
      FirebaseAuth auth;
+     ;
 
 
     @Override
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                      public void onComplete(@NonNull Task<AuthResult> task) {
                          if(task.isSuccessful()){
                              FirebaseUser firebaseUser = auth.getCurrentUser();
-                            Intent i =new Intent(MainActivity.this, HomeList.class);
+                        Intent i =new Intent(MainActivity.this, HomeList.class);
                             i.putExtra("EMAIL", firebaseUser.getEmail());
                             startActivity(i);
 

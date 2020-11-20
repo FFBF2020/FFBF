@@ -45,6 +45,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
                 User u = dss.getValue(User.class);
                 list.add(u);
             }
+
             adapter = new UserAdapter(list, UserList.this);
             rv.setAdapter(adapter);
 

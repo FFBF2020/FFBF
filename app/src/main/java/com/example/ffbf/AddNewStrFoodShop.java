@@ -31,12 +31,13 @@ import com.squareup.picasso.Picasso;
 public class AddNewStrFoodShop extends AppCompatActivity {
 
     ImageView pick;
-    EditText stallName, stallAddr1, descr;
+    EditText placeName, placeAddr, descr;
     CheckBox veg;
     Button upload;
     Uri image_path;
     StorageReference sref;
     DatabaseReference dbref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +45,15 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_str_food_shop);
 
         pick = findViewById(R.id.iv_image);
-        stallName = findViewById(R.id.et_stallName);
-        stallAddr1 = findViewById(R.id.et_stallAddress1);
+        placeName = findViewById(R.id.et_stallName);
+        placeAddr = findViewById(R.id.et_stallAddress1);
 
         veg = findViewById(R.id.cb_veg);
         upload = findViewById(R.id.btn_upload);
         descr = findViewById(R.id.etml_descr);
         sref = FirebaseStorage.getInstance().getReference("images");
+        Intent i = getIntent();
+
 
 
         // Scroller for EditText multiple lines with fixed minimum and maximum lines
@@ -94,10 +97,10 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                     type = "No-vegetarian";
                                 }
 
-                                if (!(TextUtils.isEmpty(stallName.getText().toString()) &&
-                                        TextUtils.isEmpty(stallAddr1.getText().toString())  && TextUtils.isEmpty(descr.getText().toString()))) {
+                                if (!(TextUtils.isEmpty(placeName.getText().toString()) &&
+                                        TextUtils.isEmpty(placeAddr.getText().toString())  && TextUtils.isEmpty(descr.getText().toString()))) {
 
-                                    RestAndStrFood place = new RestAndStrFood(stallName.getText().toString(), stallAddr1.getText().toString(),
+                                    RestAndStrFood place = new RestAndStrFood(placeName.getText().toString(), placeAddr.getText().toString(),
                                             descr.getText().toString(), type, url, "stall");
 
 

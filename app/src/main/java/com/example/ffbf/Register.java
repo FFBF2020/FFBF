@@ -29,7 +29,7 @@ public class Register extends AppCompatActivity {
 
     //Create imposters
     EditText fn, sn, mail, password;
-    Button register, back;
+    Button register;
     TextView userLoginMail;
 
 
@@ -54,18 +54,11 @@ public class Register extends AppCompatActivity {
         mail = findViewById(R.id.et_email);
         password = findViewById(R.id.et_pass);
         register = findViewById(R.id.btn_reg);
-        back = findViewById(R.id.btn_back);
 
 
 
-        if (auth.getCurrentUser() == null) {
 
-            back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(Register.this, MainActivity.class));
-                }
-            });
+
 
 
             // Register a new user
@@ -82,7 +75,7 @@ public class Register extends AppCompatActivity {
                                 if (task.isSuccessful()) {
 
                                     Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                                    //dbref = FirebaseDatabase.getInstance().getReference("_user_");
+
                                     String type = "user";
                                     User user = new User(fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), "user");
                                     dbref.child(dbref.push().getKey()).setValue(type);
@@ -108,7 +101,7 @@ public class Register extends AppCompatActivity {
         }
 
     }
-}
+
 
 
 

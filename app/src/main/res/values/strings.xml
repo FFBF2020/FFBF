@@ -2,7 +2,7 @@
     <string name="app_name">FFBF</string>
     <string-array name="dropDownMenu">
         <item>Menu</item>
-        <item>Profile</item>
+        <item>Users</item>
         <item>Logout</item>
 
 

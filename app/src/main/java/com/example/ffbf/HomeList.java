@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class HomeList extends AppCompatActivity {
 
     private TextView mailLogin;
-    private Button restList,streetFood;
+    private Button restList,streetFood, addPlace;
     private FirebaseAuth auth;
     private FirebaseUser fbus;
     private Spinner userMenu;
@@ -34,6 +34,7 @@ public class HomeList extends AppCompatActivity {
         mailLogin = findViewById(R.id.tv_mail_login);
         restList = findViewById(R.id.btn_restaurants);
         streetFood = findViewById(R.id.btn_streetFood);
+        addPlace = findViewById(R.id.btn_addPlace);
 
         auth = FirebaseAuth.getInstance();
         fbus = auth.getCurrentUser();
@@ -50,13 +51,14 @@ public class HomeList extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if(parent.getItemAtPosition(position).equals("Profile")) {
-                    Intent i = new Intent(HomeList.this, Profile.class);
+
+                if(parent.getItemAtPosition(position).equals("Users")) {
+                    Intent i = new Intent(HomeList.this, UserList.class);
                     i.putExtra("EMAIL", userMailLogin);
                     startActivity(i);
 
                 }
-                else if(parent.getItemAtPosition(position).equals("Logout")){
+                else //if (parent.getItemAtPosition(position).equals("Logout")){
 
                     auth.getInstance().signOut();
                     Intent i = new Intent(HomeList.this, MainActivity.class);
@@ -65,7 +67,7 @@ public class HomeList extends AppCompatActivity {
                     startActivity(i);
                 }
 
-            }
+           // }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -91,8 +93,17 @@ public class HomeList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(HomeList.this, ListPlaces.class);
                 i.putExtra("EMAIL", fbus.getEmail());
-                i.putExtra("TYPE", "Restaurant");
+                i.putExtra("TYPE", "Rest");
                 startActivity(i);
+            }
+        });
+
+
+        addPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent i = new Intent(HomeList.this, AddNewStrFoodShop.class);
+               startActivity(i);
             }
         });
 
