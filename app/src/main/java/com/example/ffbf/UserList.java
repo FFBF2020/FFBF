@@ -22,6 +22,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
     RecyclerView rv;
     DatabaseReference dbref;
     UserAdapter adapter;
+    private String loginMail;
     ArrayList<User> list = new ArrayList<>();
 
     @Override
@@ -29,6 +30,8 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
+        Intent i = getIntent();
+        loginMail = i.getStringExtra("MAIL");
 
         rv.findViewById(R.id.id_rv);
         rv.setLayoutManager(new LinearLayoutManager(UserList.this));
@@ -36,7 +39,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         dbref.addListenerForSingleValueEvent(listener);
 
     }
-
+      // take the data from Firebase and save it to ArrayList
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -45,7 +48,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
                 User u = dss.getValue(User.class);
                 list.add(u);
             }
-
+            //take it from the ArrayList and set on the Object adapter
             adapter = new UserAdapter(list, UserList.this);
             rv.setAdapter(adapter);
 
@@ -62,6 +65,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
     public void onUserClicked(int position) {
         Intent i = new Intent (UserList.this, Profile.class);
         i.putExtra("User", list.get(position));
+        i.putExtra("MailLogin", loginMail);
         startActivity(i);
 
     }

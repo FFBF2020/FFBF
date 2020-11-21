@@ -30,7 +30,7 @@ public class Register extends AppCompatActivity {
     //Create imposters
     EditText fn, sn, mail, password;
     Button register;
-    TextView userLoginMail;
+
 
 
     // Declare FirebaseAuth object

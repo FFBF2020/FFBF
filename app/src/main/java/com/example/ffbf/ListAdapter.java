@@ -65,7 +65,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
 
         public interface PlacesInterface {
 
-            public void onPlaceClick(int i) ;
+            void onPlaceClick(int i) ;
 
 
 

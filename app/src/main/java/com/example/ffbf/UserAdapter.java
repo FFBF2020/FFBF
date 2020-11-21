@@ -3,14 +3,9 @@ package com.example.ffbf;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
@@ -34,7 +29,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
 
-        holder.tv.setText(list.get(position).getFn() + " " + list.get(position).getSn());
+        holder.tv.setText(list.get(position).getMail());
 
 
     }
@@ -69,7 +64,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         }
         public interface OnUserClickListener{
 
-            public void onUserClicked(int position);
+             void onUserClicked(int position);
         }
     }
 

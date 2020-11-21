@@ -75,12 +75,10 @@
         android:layout_marginTop="26dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
-        android:layout_marginBottom="368dp"
         android:text="add new place"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_streetFood"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_streetFood" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
