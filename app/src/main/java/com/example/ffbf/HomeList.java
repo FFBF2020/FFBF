@@ -20,11 +20,11 @@ import com.google.firebase.auth.FirebaseUser;
 public class HomeList extends AppCompatActivity  {
 
     private TextView mailLogin;
-    private Button restList,streetFood, addPlace;
+    private Button restList,streetFood, addPlace, logout, users;
     private FirebaseAuth auth;
     private FirebaseUser fbus;
-    private Spinner userMenu;
-    ArrayAdapter<CharSequence> adapter;
+
+
 
 
 
@@ -33,7 +33,8 @@ public class HomeList extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_list);
 
-        userMenu = findViewById(R.id.sp_userMenu);
+        logout = findViewById(R.id.btn_logout);
+        users = findViewById(R.id.btn_users);
         mailLogin = findViewById(R.id.tv_mail_login);
         restList = findViewById(R.id.btn_restaurants);
         streetFood = findViewById(R.id.btn_streetFood);
@@ -45,43 +46,18 @@ public class HomeList extends AppCompatActivity  {
         mailLogin.setText(userMailLogin);
 
 
-         //Initialize adapter and set the items from String resource directory
-        adapter = ArrayAdapter.createFromResource(this, R.array.dropDownMenu, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        userMenu.setAdapter(adapter);
-       //Dropdown menu, displaying options to see all users or to log out
-        userMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                  // the position 0 is the first item, navigating to list with all users
-                    case 0:
-                        Intent i = new Intent(HomeList.this, UserList.class);
-                        i.putExtra("EMAIL", userMailLogin);
-                        startActivity(i);
 
-                        break;
-
-
-                    case 1:
-                       // case 1 is the second item, which is logout
-                        auth.getInstance().signOut();
-                        Intent intent1 = new Intent(HomeList.this, MainActivity.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent1);
-                        break;
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
+         //logout and clear all activities
+         logout.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 auth.getInstance().signOut();
+                 Intent i= new Intent(HomeList.this, MainActivity.class);
+                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                 startActivity(i);
+             }
+         });
 
 
           // going to Activity displaying street food
@@ -91,7 +67,7 @@ public class HomeList extends AppCompatActivity  {
 
                 Intent i = new Intent (HomeList.this, ListPlaces.class);
                 //send user email to can identify later is it user or admin
-                i.putExtra("EMAIL", fbus.getEmail());
+                i.putExtra("EMAIL", userMailLogin);
                 // this value will select only stalls to be shown
                 i.putExtra("TYPE", "Stall");
                 startActivity(i);
@@ -103,7 +79,7 @@ public class HomeList extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeList.this, ListPlaces.class);
-                i.putExtra("EMAIL", fbus.getEmail());
+                i.putExtra("EMAIL", userMailLogin);
                 //the type will select only restaurants to be shown
                 i.putExtra("TYPE", "Rest");
                 startActivity(i);
@@ -115,6 +91,16 @@ public class HomeList extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeList.this, AddNewStrFoodShop.class);
+                startActivity(i);
+            }
+        });
+
+
+        users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent (HomeList.this, UserList.class);
+                i.putExtra("MAIL", userMailLogin);
                 startActivity(i);
             }
         });

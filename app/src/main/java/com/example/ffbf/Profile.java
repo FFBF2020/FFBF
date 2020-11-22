@@ -79,7 +79,7 @@ public class Profile extends AppCompatActivity {
 
         private boolean isSurnameChanged () {
             if (!surname.equals(fn.getText().toString())){
-                dbref.child(surname).child("sn").setValue(sn.getText().toString());
+                dbref.child("_user_").child(loginMail).child(surname).child("sn").setValue(sn.getText().toString());
                 return true;
             }
             else {
@@ -89,7 +89,7 @@ public class Profile extends AppCompatActivity {
 
         private boolean isFirstNameChanged () {
         if(!firstName.equals(fn.getText().toString())){
-         dbref.child(firstName).child("fn").setValue(fn.getText().toString());
+         dbref.child("_user").child(loginMail).child(firstName).child("fn").setValue(fn.getText().toString());
          return true;
         }
         else {

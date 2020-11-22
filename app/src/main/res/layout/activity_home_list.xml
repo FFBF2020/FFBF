@@ -28,28 +28,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginRight="57dp"
         android:layout_marginBottom="203dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_restaurants"
-        app:layout_constraintEnd_toStartOf="@+id/sp_userMenu"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.016" />
-
-    <Spinner
-        android:id="@+id/sp_userMenu"
-        android:layout_width="188dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="205dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_restaurants"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_restaurants"
@@ -80,5 +63,37 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_streetFood" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="115dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_marginBottom="198dp"
+        android:text="logout"
+        app:layout_constraintBottom_toTopOf="@+id/btn_restaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_mail_login"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_users"
+        android:layout_width="191dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginRight="113dp"
+        android:layout_marginBottom="97dp"
+        android:text="all users"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_addPlace" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
