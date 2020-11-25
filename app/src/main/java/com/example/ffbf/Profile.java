@@ -35,10 +35,13 @@ public class Profile extends AppCompatActivity {
         back = findViewById(R.id.btn_back);
         userMailLog = findViewById(R.id.tv_mailLogin);
         update = findViewById(R.id.btn_updateProfile);
-
+          //get the object, sent from previous activity
         User user = getIntent().getParcelableExtra("User");
+        //get the email of the current user
         loginMail = getIntent().getStringExtra("MailLogin");
+        //update button to be invisible
         update.setVisibility(View.INVISIBLE);
+        //database reference
         dbref = FirebaseDatabase.getInstance().getReference("_user_");
 
         //display chosen user's details
@@ -47,8 +50,7 @@ public class Profile extends AppCompatActivity {
         mail.setText(user.getMail());
         type.setText(user.getType());
         userMailLog.setText(loginMail);
-        String firstName = user.getFn();
-        String surname = user.getSn();
+
 
         // if the user wants to access his own profile
         if (user.getMail() == loginMail) {
@@ -79,7 +81,7 @@ public class Profile extends AppCompatActivity {
 
         private boolean isSurnameChanged () {
             if (!surname.equals(fn.getText().toString())){
-                dbref.child("_user_").child(loginMail).child(surname).child("sn").setValue(sn.getText().toString());
+                dbref.child("_user_").child(loginMail).child("sn").setValue(sn.getText().toString());
                 return true;
             }
             else {
@@ -89,7 +91,7 @@ public class Profile extends AppCompatActivity {
 
         private boolean isFirstNameChanged () {
         if(!firstName.equals(fn.getText().toString())){
-         dbref.child("_user").child(loginMail).child(firstName).child("fn").setValue(fn.getText().toString());
+         dbref.child("_user").child(loginMail).child("fn").setValue(fn.getText().toString());
          return true;
         }
         else {

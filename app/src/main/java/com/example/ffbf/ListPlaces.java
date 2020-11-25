@@ -23,29 +23,38 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
     ListAdapter adapter;
     DatabaseReference dbref;
     ArrayList<RestAndStrFood> list = new ArrayList<>();
+    private String type;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_places);
-
+      // connect XML widget with java class. Get the intent from previous activity
         rv = findViewById(R.id.r_view);
+        Intent i = getIntent();
+        // type is the type of the places - restaurants or stalls
+        type = i.getStringExtra("TYPE");
+        //set Firebase path
         dbref = FirebaseDatabase.getInstance().getReference("_places_");
         mng = new LinearLayoutManager(ListPlaces.this);
         rv.setLayoutManager(mng);
         dbref.addListenerForSingleValueEvent(listener);
     }
-
-    ValueEventListener listener = new ValueEventListener() {
+     //get data from Firebase, using loop and set it to Arraylist
+   ValueEventListener listener = new ValueEventListener() {
         @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for(DataSnapshot dss: snapshot.getChildren()){
+       public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for (DataSnapshot dss : snapshot.getChildren()) {
                 RestAndStrFood rast = dss.getValue(RestAndStrFood.class);
+
                 list.add(rast);
+
+
             }
-            adapter = new ListAdapter(list, ListPlaces.this);
-            rv.setAdapter(adapter);
+            //set adapter with the list of places
+   adapter = new ListAdapter(list, ListPlaces.this);
+                 rv.setAdapter(adapter);
 
         }
 
@@ -54,7 +63,7 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
 
         }
     };
-
+          // when the user click on the image, will be relocated to details of the place
     @Override
     public void onPlaceClick(int i) {
      Intent intent = new Intent(ListPlaces.this, PlaceDetails.class);

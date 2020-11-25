@@ -95,7 +95,7 @@ public class HomeList extends AppCompatActivity  {
             }
         });
 
-
+       //to see all users
         users.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

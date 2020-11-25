@@ -52,7 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         super(itemView);
 
 
-        tv = itemView.findViewById(R.id.tv_userName);
+        tv = itemView.findViewById(R.id.tv_userEmail);
         listener = _listener;
         itemView.setOnClickListener(this);
     }
