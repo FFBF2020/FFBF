@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,8 +24,9 @@ public class PlaceDetails extends AppCompatActivity {
 
         Intent i = getIntent();
         RestAndStrFood rasf = i.getParcelableExtra("Place");
+        Toast.makeText(PlaceDetails.this, rasf.getName(), Toast.LENGTH_LONG).show();
 
-        iv = findViewById(R.id.iv_image);
+        iv = findViewById(R.id.iv_place);
         name = findViewById(R.id.tv_name);
         descr = findViewById(R.id.tv_descr);
         rev = findViewById(R.id.btn_seeRev);

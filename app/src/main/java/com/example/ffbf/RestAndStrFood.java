@@ -27,7 +27,6 @@ public class RestAndStrFood  implements Parcelable {
     protected RestAndStrFood(Parcel in) {
         name = in.readString();
         address1 = in.readString();
-        address2 = in.readString();
         description = in.readString();
         vegType = in.readString();
         url = in.readString();
@@ -104,7 +103,6 @@ public class RestAndStrFood  implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(address1);
-        dest.writeString(address2);
         dest.writeString(description);
         dest.writeString(vegType);
         dest.writeString(url);

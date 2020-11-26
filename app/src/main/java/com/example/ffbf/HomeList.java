@@ -69,7 +69,7 @@ public class HomeList extends AppCompatActivity  {
                 //send user email to can identify later is it user or admin
                 i.putExtra("EMAIL", userMailLogin);
                 // this value will select only stalls to be shown
-                i.putExtra("TYPE", "Stall");
+                i.putExtra("TYPE", "stall");
                 startActivity(i);
 
             }
@@ -81,7 +81,7 @@ public class HomeList extends AppCompatActivity  {
                 Intent i = new Intent(HomeList.this, ListPlaces.class);
                 i.putExtra("EMAIL", userMailLogin);
                 //the type will select only restaurants to be shown
-                i.putExtra("TYPE", "Rest");
+                i.putExtra("TYPE", "rest");
                 startActivity(i);
             }
         });

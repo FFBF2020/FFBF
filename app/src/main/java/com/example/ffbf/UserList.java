@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserList extends AppCompatActivity implements  UserAdapter.UserHolder.OnUserClickListener {
 
@@ -33,7 +33,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         Intent i = getIntent();
         loginMail = i.getStringExtra("MAIL");
 
-        rv.findViewById(R.id.id_rv);
+        rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(UserList.this));
         dbref = FirebaseDatabase.getInstance().getReference("_user_");
         dbref.addListenerForSingleValueEvent(listener);
@@ -48,6 +48,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
                 User u = dss.getValue(User.class);
                 list.add(u);
             }
+            Toast.makeText(UserList.this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
             //take it from the ArrayList and set on the Object adapter
             adapter = new UserAdapter(list, UserList.this);
             rv.setAdapter(adapter);

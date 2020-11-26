@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
 
 
         // if the user wants to access his own profile
-        if (user.getMail() == loginMail) {
+        if (user.getMail().equals(loginMail)) {
             //make update button visible
             // make edit texts editable
             update.setVisibility(View.VISIBLE);

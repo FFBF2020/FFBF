@@ -76,9 +76,9 @@ public class Register extends AppCompatActivity {
 
                                     Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
 
-                                    String type = "user";
+
                                     User user = new User(fn.getText().toString(), sn.getText().toString(), mail.getText().toString(), password.getText().toString(), "user");
-                                    dbref.child(dbref.push().getKey()).setValue(type);
+                                    dbref.child(dbref.push().getKey()).setValue(user);
 
                                     startActivity(new Intent(Register.this, MainActivity.class));
                                     finish();
