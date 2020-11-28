@@ -24,7 +24,7 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
                 ReviewAdapter adapter;
                 DatabaseReference dbref;
                 ArrayList<Review> list = new ArrayList<>();
-                private String type;
+                private String placeType, userLoginMail, placeName, userType;
 
 
                 @Override
@@ -33,9 +33,15 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
                         setContentView(R.layout.activity_reviews_list);
                         // connect XML widget with java class. Get the intent from previous activity
                         rv = findViewById(R.id.r_view);
+                        //get intent
                         Intent i = getIntent();
-                        // type is the type of the places - restaurants or stalls
-                        type = i.getStringExtra("TYPE");
+
+                        placeType = i.getStringExtra("TYPE");
+                        userLoginMail = i.getStringExtra("EMAIL");
+                        placeName = i.getStringExtra("PlaceName");
+                        userType = i.getStringExtra("UserType");
+
+
                         //set Firebase path
                         dbref = FirebaseDatabase.getInstance().getReference("_review_");
                         mng = new LinearLayoutManager(ReviewsList.this);
@@ -64,11 +70,13 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
 
                         }
                 };
-                // when the user click on the image, will be relocated to details of the place
+                // If the user click will be navigate to details Activity
                 @Override
                 public void onPlaceClick(int i) {
                         Intent intent = new Intent(ReviewsList.this, ReviewDetails.class);
-                        intent.putExtra("Place", list.get(i));
+                        intent.putExtra("ReviewDetails", list.get(i));
+                        intent.putExtra("EMAIL", userLoginMail);
+                        intent.putExtra("UserType", userType);
                         startActivity(intent);
 
                 }

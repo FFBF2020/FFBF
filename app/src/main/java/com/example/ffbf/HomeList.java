@@ -1,5 +1,6 @@
 package com.example.ffbf;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -15,6 +16,14 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class HomeList extends AppCompatActivity  {
@@ -23,7 +32,9 @@ public class HomeList extends AppCompatActivity  {
     private Button restList,streetFood, addPlace, logout, users;
     private FirebaseAuth auth;
     private FirebaseUser fbus;
-
+    private DatabaseReference dbref;
+    ArrayList<User> list = new ArrayList<>();
+    private String userType;
 
 
 
@@ -44,7 +55,29 @@ public class HomeList extends AppCompatActivity  {
         fbus = auth.getCurrentUser();
         final String userMailLogin = fbus.getEmail();
         mailLogin.setText(userMailLogin);
+        dbref = FirebaseDatabase.getInstance().getReference("_user_");
 
+
+
+        // take all users from Firebase and save it into ArrayList
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dss:snapshot.getChildren()){
+
+                    User u = dss.getValue(User.class);
+                    list.add(u);
+                }
+                getCurrentUserType();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        dbref.addListenerForSingleValueEvent(listener);
 
 
          //logout and clear all activities
@@ -70,6 +103,7 @@ public class HomeList extends AppCompatActivity  {
                 i.putExtra("EMAIL", userMailLogin);
                 // this value will select only stalls to be shown
                 i.putExtra("TYPE", "stall");
+                i.putExtra("UserType", userType);
                 startActivity(i);
 
             }
@@ -80,6 +114,7 @@ public class HomeList extends AppCompatActivity  {
             public void onClick(View v) {
                 Intent i = new Intent(HomeList.this, ListPlaces.class);
                 i.putExtra("EMAIL", userMailLogin);
+                i.putExtra("UserType", userType);
                 //the type will select only restaurants to be shown
                 i.putExtra("TYPE", "rest");
                 startActivity(i);
@@ -101,11 +136,23 @@ public class HomeList extends AppCompatActivity  {
             public void onClick(View v) {
                 Intent i = new Intent (HomeList.this, UserList.class);
                 i.putExtra("MAIL", userMailLogin);
+                i.putExtra("UserType", userType);
+
                 startActivity(i);
             }
         });
 
+
+
     }
 
+public void getCurrentUserType() {
 
+        for(int i=0; i<list.size(); i++) {
+
+            if(auth.getCurrentUser().getEmail().equals(list.get(i).getMail())) {
+                userType = list.get(i).getType();
+            }
+        }
+}
 }

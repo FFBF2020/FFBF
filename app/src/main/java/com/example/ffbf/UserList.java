@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +40,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         dbref.addListenerForSingleValueEvent(listener);
 
     }
-      // take the data from Firebase and save it to ArrayList
+    // take the data from Firebase and save it to ArrayList
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -48,7 +49,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
                 User u = dss.getValue(User.class);
                 list.add(u);
             }
-            Toast.makeText(UserList.this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
+            //Toast.makeText(UserList.this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
             //take it from the ArrayList and set on the Object adapter
             adapter = new UserAdapter(list, UserList.this);
             rv.setAdapter(adapter);
@@ -70,4 +71,5 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         startActivity(i);
 
     }
+
 }

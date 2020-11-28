@@ -24,7 +24,7 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
     RecyclerView.LayoutManager mng;
     ListAdapter adapter;
     ArrayList<RestAndStrFood> list = new ArrayList<>();
-    private String type;
+    private String typePlace, userType, userLoginMail;
     Query dbref;
 
 
@@ -35,11 +35,12 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
       // connect XML widget with java class. Get the intent from previous activity
         rv = findViewById(R.id.r_view);
         Intent i = getIntent();
-        // type is the type of the places - restaurants or stalls
-        type = i.getStringExtra("TYPE");
-
+        // get the type of the place and the type of the user
+        typePlace = i.getStringExtra("TYPE");
+        userType = i.getStringExtra("UserType");
+        userLoginMail = i.getStringExtra("EMAIL");
         //set Firebase path
-        dbref = FirebaseDatabase.getInstance().getReference("_places_").orderByChild("placeType").equalTo(type);
+        dbref = FirebaseDatabase.getInstance().getReference("_places_").orderByChild("placeType").equalTo(typePlace);
         mng = new LinearLayoutManager(ListPlaces.this);
         rv.setLayoutManager(mng);
         dbref.addListenerForSingleValueEvent(listener);
@@ -55,7 +56,7 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
 
 
             }
-            Toast.makeText(ListPlaces.this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
+
             //set adapter with the list of places
    adapter = new ListAdapter(list, ListPlaces.this);
                  rv.setAdapter(adapter);
@@ -72,6 +73,9 @@ public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.
     public void onPlaceClick(int i) {
      Intent intent = new Intent(ListPlaces.this, PlaceDetails.class);
      intent.putExtra("Place", list.get(i));
+     intent.putExtra("UserType", userType);
+     intent.putExtra("PlaceType", typePlace);
+     intent.putExtra("EMAIL", userLoginMail);
      startActivity(intent);
 
     }
