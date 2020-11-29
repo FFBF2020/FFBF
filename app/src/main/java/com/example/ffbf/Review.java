@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 public class Review implements Parcelable {
 
-    String placeName;
-    String userMail;
-    String review;
+    private String placeName;
+   private String userMail;
+    private String review;
 
       //constructor for writing data
     public Review(String placeName, String userMail, String review) {

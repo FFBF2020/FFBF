@@ -20,12 +20,12 @@ import java.util.ArrayList;
 
 public class ListPlaces extends AppCompatActivity implements ListAdapter.Holder.PlacesInterface {
 
-    RecyclerView rv;
-    RecyclerView.LayoutManager mng;
-    ListAdapter adapter;
+    private RecyclerView rv;
+    private RecyclerView.LayoutManager mng;
+   private ListAdapter adapter;
     ArrayList<RestAndStrFood> list = new ArrayList<>();
     private String typePlace, userType, userLoginMail;
-    Query dbref;
+   private Query dbref;
 
 
     @Override

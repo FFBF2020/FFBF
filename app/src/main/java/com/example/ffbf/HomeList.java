@@ -59,7 +59,7 @@ public class HomeList extends AppCompatActivity  {
 
 
 
-        // take all users from Firebase and save it into ArrayList
+        // take all users from Firebase and save it into ArrayList with loop
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -13,16 +13,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Holder.ReviewInterface {
 
-                RecyclerView rv;
-                RecyclerView.LayoutManager mng;
-                ReviewAdapter adapter;
-                DatabaseReference dbref;
+               private RecyclerView rv;
+               private RecyclerView.LayoutManager mng;
+               private ReviewAdapter adapter;
+               private Query dbref;
                 ArrayList<Review> list = new ArrayList<>();
                 private String placeType, userLoginMail, placeName, userType;
 
@@ -32,7 +33,7 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
                         super.onCreate(savedInstanceState);
                         setContentView(R.layout.activity_reviews_list);
                         // connect XML widget with java class. Get the intent from previous activity
-                        rv = findViewById(R.id.r_view);
+                        rv = findViewById(R.id.recV_Reviews);
                         //get intent
                         Intent i = getIntent();
 
@@ -42,8 +43,8 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
                         userType = i.getStringExtra("UserType");
 
 
-                        //set Firebase path
-                        dbref = FirebaseDatabase.getInstance().getReference("_review_");
+                        //set query to search for specific data
+                        dbref = FirebaseDatabase.getInstance().getReference("_reviews_").orderByChild("placeName").equalTo(placeName);
                         mng = new LinearLayoutManager(ReviewsList.this);
                         rv.setLayoutManager(mng);
                         dbref.addListenerForSingleValueEvent(listener);
@@ -59,7 +60,7 @@ public class ReviewsList extends AppCompatActivity implements ReviewAdapter.Hold
 
 
                                 }
-                                //set adapter with the list of places
+                                //set adapter with the list
                                 adapter = new ReviewAdapter(list, ReviewsList.this);
                                 rv.setAdapter(adapter);
 

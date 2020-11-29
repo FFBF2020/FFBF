@@ -30,13 +30,13 @@ import com.squareup.picasso.Picasso;
 
 public class AddNewStrFoodShop extends AppCompatActivity {
 
-    ImageView pick;
-    EditText placeName, placeAddr, descr;
-    CheckBox veg;
-    Button upload;
-    Uri image_path;
-    StorageReference sref;
-    DatabaseReference dbref;
+    private ImageView pick;
+   private EditText placeName, placeAddr, descr;
+    private CheckBox veg;
+   private Button upload;
+    private Uri image_path;
+    private StorageReference sref;
+    private DatabaseReference dbref;
 
 
     @Override
@@ -52,7 +52,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         upload = findViewById(R.id.btn_upload);
         descr = findViewById(R.id.etml_descr);
         sref = FirebaseStorage.getInstance().getReference("images");
-        Intent i = getIntent();
+
 
 
 
@@ -60,7 +60,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         descr.setScroller(new Scroller(getApplicationContext()));
         descr.setMinLines(1);
         descr.setMaxLines(6);
-
+       //pick an image and display it, save it in storage
         pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,9 +76,11 @@ public class AddNewStrFoodShop extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
+               //db reference
                dbref = FirebaseDatabase.getInstance().getReference("_places_");
+               //get primary key in db
                 final String id = dbref.push().getKey();
+                //get URL from storage. If it is successful, call the constructor and save as a new object
                 final StorageReference reference = sref.child(id + "."+ getExtension(image_path));
                 reference.putFile(image_path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -96,7 +98,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                 else {
                                     type = "No-vegetarian";
                                 }
-
+                                      // if the fields are not empty, call constructor to create an object and save it in database
                                 if (!(TextUtils.isEmpty(placeName.getText().toString()) &&
                                         TextUtils.isEmpty(placeAddr.getText().toString())  && TextUtils.isEmpty(descr.getText().toString()))) {
 
@@ -112,7 +114,7 @@ public class AddNewStrFoodShop extends AppCompatActivity {
                                 else {
                                     Toast.makeText(AddNewStrFoodShop.this, "Please fill all fields", Toast.LENGTH_LONG).show();
                                 }
-
+                           // if not, delete
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

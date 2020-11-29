@@ -16,7 +16,7 @@ public class ReviewAdapter  extends  RecyclerView.Adapter<ReviewAdapter.Holder> 
 
     ArrayList<Review> list;
     ReviewAdapter.Holder.ReviewInterface listener;
-
+     // constructor
     public ReviewAdapter(ArrayList<Review> list, ReviewAdapter.Holder. ReviewInterface  _listener) {
         this.list = list;
         listener = _listener;

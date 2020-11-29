@@ -19,10 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ReviewDetails extends AppCompatActivity {
 
-    TextView mailAuthor, reviewText;
-    Button delete, back;
-    String currentUserMail, userType;
-   Query dbref;
+   private TextView mailAuthor, reviewText;
+   private Button delete, back;
+   private String currentUserMail, userType;
+   private Query dbref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class ReviewDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //query to find the specific review for deleting
-                    dbref = FirebaseDatabase.getInstance().getReference("_places").orderByChild("review").equalTo(reviewT);
+                    dbref = FirebaseDatabase.getInstance().getReference("_reviews_").orderByChild("review").equalTo(reviewT);
                     // looping to find the data for deleting
                     dbref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override

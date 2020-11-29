@@ -14,10 +14,10 @@ import com.squareup.picasso.Picasso;
 
 public class PlaceDetails extends AppCompatActivity {
 
-    ImageView iv;
-    TextView name, descr;
-    Button rev, addRev, book;
-    String placeType, userType, placeName, userLoginMail;
+   private ImageView iv;
+    private TextView name, descr;
+    private Button rev, addRev, book;
+    private String placeType, userType, placeName, userLoginMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,10 @@ public class PlaceDetails extends AppCompatActivity {
         addRev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(PlaceDetails.this, AddReview.class);
+                i.putExtra("PlaceName", placeName);
+                i.putExtra("EMAIL", userLoginMail);
+                startActivity(i);
             }
         });
 

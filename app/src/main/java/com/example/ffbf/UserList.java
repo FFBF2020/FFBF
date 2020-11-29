@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class UserList extends AppCompatActivity implements  UserAdapter.UserHolder.OnUserClickListener {
 
-    RecyclerView rv;
-    DatabaseReference dbref;
-    UserAdapter adapter;
+    private RecyclerView rv;
+   private DatabaseReference dbref;
+   private UserAdapter adapter;
     private String loginMail;
     ArrayList<User> list = new ArrayList<>();
 
@@ -36,6 +36,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
 
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(UserList.this));
+        //db reference
         dbref = FirebaseDatabase.getInstance().getReference("_user_");
         dbref.addListenerForSingleValueEvent(listener);
 
@@ -49,8 +50,8 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
                 User u = dss.getValue(User.class);
                 list.add(u);
             }
-            //Toast.makeText(UserList.this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
-            //take it from the ArrayList and set on the Object adapter
+
+            //set the list to adapter
             adapter = new UserAdapter(list, UserList.this);
             rv.setAdapter(adapter);
 
@@ -62,7 +63,7 @@ public class UserList extends AppCompatActivity implements  UserAdapter.UserHold
         }
     };
 
-
+   // on clicking, take the position to adapter and send the object to class Profile
     @Override
     public void onUserClicked(int position) {
         Intent i = new Intent (UserList.this, Profile.class);

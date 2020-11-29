@@ -14,11 +14,11 @@ import com.google.firebase.database.Query;
 
 public class Profile extends AppCompatActivity {
 
-    EditText fn, sn, mail, type;
-    TextView userMailLog;
-    Button back, update;
-    DatabaseReference dbref;
-    String loginMail, firstName, surname;
+   private EditText fn, sn, mail, type;
+    private TextView userMailLog;
+    private Button back, update;
+   private DatabaseReference dbref;
+   private String loginMail, firstName, surname;
 
 
 
