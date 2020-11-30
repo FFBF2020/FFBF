@@ -32,10 +32,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText  mail, password;
-    Button login, register;
-    String email;
-     FirebaseAuth auth;
+    private EditText  mail, password;
+    private Button login, register;
+    private String email;
+    private FirebaseAuth auth;
      ;
 
 

@@ -85,6 +85,12 @@ public class PlaceDetails extends AppCompatActivity {
             }
         });
 
-
+          // make booking
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlaceDetails.this, Booking.class));
+            }
+        });
     }
 }

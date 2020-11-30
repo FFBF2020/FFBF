@@ -44,8 +44,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
 
     public static class Holder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
-        ImageView iv;
-        TextView tv;
+       private ImageView iv;
+        private TextView tv;
         PlacesInterface listener;
 
      public Holder (@NonNull  View itemView, PlacesInterface _listener) {

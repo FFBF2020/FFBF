@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class RestAndStrFood  implements Parcelable {
 
-    private String name, address1, address2, description, vegType, url, placeType;
+    private String name, address1, description, vegType, url, placeType;
 
 
 

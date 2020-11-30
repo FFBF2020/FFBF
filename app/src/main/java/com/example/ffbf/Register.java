@@ -28,14 +28,12 @@ import java.util.ArrayList;
 public class Register extends AppCompatActivity {
 
     //Create imposters
-    EditText fn, sn, mail, password;
-    Button register;
-
-
+    private EditText fn, sn, mail, password;
+    private Button register;
 
     // Declare FirebaseAuth object
-    FirebaseAuth auth;
-    DatabaseReference dbref;
+    private FirebaseAuth auth;
+    private DatabaseReference dbref;
 
 
     @Override
