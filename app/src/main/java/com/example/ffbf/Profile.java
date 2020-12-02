@@ -1,16 +1,17 @@
 package com.example.ffbf;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
 
 public class Profile extends AppCompatActivity {
 
@@ -68,6 +69,14 @@ public class Profile extends AppCompatActivity {
 
 
         }
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent i = new Intent(Profile.this, UserList.class);
+                startActivity(i);
+            }
+        });
     }
 
         public void update () {

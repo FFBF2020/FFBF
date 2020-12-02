@@ -3,8 +3,6 @@ package com.example.ffbf;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Scroller;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -145,8 +142,6 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         }
     }
 
-
-
     private String getExtension(Uri path) {
 
         ContentResolver resolver = getContentResolver();
@@ -154,4 +149,5 @@ public class AddNewStrFoodShop extends AppCompatActivity {
         return map.getExtensionFromMimeType(resolver.getType(path));
 
     }
+    
 }
